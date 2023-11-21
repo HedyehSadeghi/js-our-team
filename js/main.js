@@ -44,7 +44,7 @@ printObjects(team[1]);
 printTable(team);
 
 
-printObjectsInHTML(team[1]);
+//printObjectsInHTML(team[1]);
 printTableInHTML(team);
 
 
@@ -103,12 +103,11 @@ function printObjectsInHTML(object){
 }
 
 function printTableInHTML(array){
-    let stringArray ="";
-    stringArray+="ecco le informazioni: <br>"
+    document.getElementById("tabella_nomi").innerHTML +="ecco le informazioni. <br>";
     for (let i=0; i< array.length; i++){
-        stringArray+= "persona numero" +(i+1) + ": <br>";
+        document.getElementById("tabella_nomi").innerHTML +="persona numero " +(i+1) + ": <br>";
         let objectPrinted=printObjectsInHTML(array[i]);
-        stringArray+= objectPrinted;
+        
     }
    
     
