@@ -2,7 +2,7 @@ let team=[
     {
         name: "Wayne Barnett",
         role: "Founder & CEO",
-        image: "wayne-barnett-founder-console.jpg"
+        image: "wayne-barnett-founder-ceo.jpg"
 
     },
     {
@@ -19,7 +19,7 @@ let team=[
     },
     {
         name: "Angela Lopez",
-        role: "Social MEdia Manager",
+        role: "Social Media Manager",
         image: "angela-lopez-social-media-manager.jpg"
 
     },
@@ -38,19 +38,19 @@ let team=[
 
 ];
 
-//stampa su console:
+//----------stampa su console: -------------
 printObjects(team[1]);
 printTable(team);
 
 
-//Stampa su html:
+//---------Stampa su html: ---------
 
 //printObjectsInHTML(team[1]);
 //printTableInHTML(team);
 
-printArrayInHTML(team);
+//printArrayInHTML(team);
 
-
+cardsInHTML(team);
 
 
 
@@ -63,7 +63,7 @@ printArrayInHTML(team);
 //-------------FUNZIONI-----------------
 
 
-//su console:
+//-----su console:  ------
 
 function printObjects(object){
     let objectInString= "";
@@ -96,26 +96,30 @@ function printTable(array){
 
 
 
-//su HTML
+//-------su HTML -------------
 
-
+//---base-----
 function createObjectsInHTML(object){
 
     for (let key in object){
-        /*
-        let p= document.createElement("p");
-        let text= document.createTextNode(key+": " + object[key]);
-        p.appendChild(text);
-        document.body.appendChild(p);
-        */
-        let p= document.createElement("p");
-        let strong= document.createElement("strong"); 
-        let keyText= document.createTextNode(key); 
-        strong.appendChild(keyText);
-        let text= document.createTextNode(": " + object[key]); 
-        p.appendChild(strong);
-        p.appendChild(text); 
-        document.body.appendChild(p);
+        if (key!="image"){
+            let p= document.createElement("p");
+            let strong= document.createElement("strong"); 
+            let keyText= document.createTextNode(key); 
+            strong.appendChild(keyText);        
+            let text= document.createTextNode(": " + object[key]); 
+            p.appendChild(strong);
+            p.appendChild(text); 
+            document.body.appendChild(p);
+
+        }
+        else{
+            let img= document.createElement("img");
+            img.setAttribute("src", "./img/"+object[key]);
+            img.setAttribute("style", "width: 200px;");
+            document.body.appendChild(img);
+
+        }
     }
 }
 
@@ -127,9 +131,6 @@ function printArrayInHTML(array){
     }
 
 }
-
-
-
 
 
 
@@ -156,3 +157,35 @@ function printTableInHTML(array){
     
 }
 */
+
+
+
+
+//----con cards----
+
+function oneCardInHTML(object){
+    let container= document.querySelector(".container");
+    let row=document.querySelector(".row");
+    
+    let card=document.createElement("div");
+    card.classList.add("col-lg-4","p-3");
+    card.innerHTML=`
+        <div class="card" style="width: 18rem;">
+            <img src="./img/${object["image"]}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title text-center">${object["name"]}</h5>
+                <p class="card-text text-center">${object["role"]}</p>
+            </div>
+        </div>
+        `;
+
+    row.appendChild(card);
+    
+}
+
+function cardsInHTML(array){
+    for (let i=0; i<array.length; i++){
+        oneCardInHTML(array[i]);
+    }
+
+}
