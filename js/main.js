@@ -38,17 +38,17 @@ let team=[
 
 ];
 
-//console.log(team);
-
+//stampa su console:
 printObjects(team[1]);
 printTable(team);
 
 
+//Stampa su html:
+
 //printObjectsInHTML(team[1]);
-printTableInHTML(team);
+//printTableInHTML(team);
 
-
-
+printArrayInHTML(team);
 
 
 
@@ -62,6 +62,8 @@ printTableInHTML(team);
 
 //-------------FUNZIONI-----------------
 
+
+//su console:
 
 function printObjects(object){
     let objectInString= "";
@@ -91,6 +93,47 @@ function printTable(array){
     */
 }
 
+
+
+
+//su HTML
+
+
+function createObjectsInHTML(object){
+
+    for (let key in object){
+        /*
+        let p= document.createElement("p");
+        let text= document.createTextNode(key+": " + object[key]);
+        p.appendChild(text);
+        document.body.appendChild(p);
+        */
+        let p= document.createElement("p");
+        let strong= document.createElement("strong"); 
+        let keyText= document.createTextNode(key); 
+        strong.appendChild(keyText);
+        let text= document.createTextNode(": " + object[key]); 
+        p.appendChild(strong);
+        p.appendChild(text); 
+        document.body.appendChild(p);
+    }
+}
+
+function printArrayInHTML(array){
+    for (let i=0; i< array.length; i++){
+        createObjectsInHTML(array[i]);
+        let newLine =document.createElement("hr");
+        document.body.appendChild(newLine);
+    }
+
+}
+
+
+
+
+
+
+/*
 function printObjectsInHTML(object){
     let objectInString= "";
     for (let key in object){
@@ -112,3 +155,4 @@ function printTableInHTML(array){
    
     
 }
+*/
