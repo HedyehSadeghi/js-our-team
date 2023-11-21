@@ -164,7 +164,6 @@ function printTableInHTML(array){
 //----con cards----
 
 function oneCardInHTML(object){
-    let container= document.querySelector(".container");
     let row=document.querySelector(".row");
     
     let card=document.createElement("div");
